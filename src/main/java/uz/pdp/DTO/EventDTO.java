@@ -2,7 +2,7 @@ package uz.pdp.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.pdp.university.entity.EventType;
+import uz.pdp.entity.type.EventType;
 
 import java.time.LocalDateTime;
 

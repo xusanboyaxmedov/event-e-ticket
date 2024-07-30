@@ -17,6 +17,7 @@ public class OrganizerController {
     EventService eventService;
     UserService userService;
 
+
     @RequestMapping
     public String organizerPage(HttpSession session, Model model) {
         model.addAttribute("session", userService.findById((UUID) session.getAttribute("userId")));

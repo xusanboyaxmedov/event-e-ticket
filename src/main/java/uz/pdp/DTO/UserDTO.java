@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uz.pdp.university.entity.UserType;
+import uz.pdp.entity.type.UserType;
 
 @AllArgsConstructor
 @NoArgsConstructor

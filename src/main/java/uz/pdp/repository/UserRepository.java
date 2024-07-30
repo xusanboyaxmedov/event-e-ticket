@@ -4,10 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import uz.pdp.university.DTO.SignInDTO;
-import uz.pdp.university.DTO.SignUpDTO;
-import uz.pdp.university.entity.EventEntity;
-import uz.pdp.university.entity.UserEntity;
+import uz.pdp.DTO.SignInDTO;
+import uz.pdp.DTO.SignUpDTO;
+import uz.pdp.entity.EventEntity;
+import uz.pdp.entity.UserEntity;
 
 import java.util.UUID;
 

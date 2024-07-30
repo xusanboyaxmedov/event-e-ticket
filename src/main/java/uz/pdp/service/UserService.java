@@ -3,11 +3,11 @@ package uz.pdp.service;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import uz.pdp.university.DTO.SignInDTO;
-import uz.pdp.university.DTO.SignUpDTO;
-import uz.pdp.university.entity.EventEntity;
-import uz.pdp.university.entity.UserEntity;
-import uz.pdp.university.repository.UserRepository;
+import uz.pdp.DTO.SignInDTO;
+import uz.pdp.DTO.SignUpDTO;
+import uz.pdp.entity.EventEntity;
+import uz.pdp.entity.UserEntity;
+import uz.pdp.repository.UserRepository;
 
 import java.util.List;
 import java.util.UUID;

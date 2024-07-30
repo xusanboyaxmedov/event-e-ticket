@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import uz.pdp.university.DTO.SignInDTO;
-import uz.pdp.university.DTO.SignUpDTO;
-import uz.pdp.university.entity.UserEntity;
-import uz.pdp.university.service.UserService;
+import uz.pdp.DTO.SignInDTO;
+import uz.pdp.DTO.SignUpDTO;
+import uz.pdp.entity.UserEntity;
+import uz.pdp.service.UserService;
 
-import static uz.pdp.university.entity.UserType.ORGANIZER;
-import static uz.pdp.university.entity.UserType.USER;
+import static uz.pdp.entity.type.UserType.ORGANIZER;
+import static uz.pdp.entity.type.UserType.USER;
 
 @Controller
 @RequestMapping(value = {"/auth", "/"})

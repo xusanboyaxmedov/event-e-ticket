@@ -1,4 +1,4 @@
-package uz.pdp.config;
+package uz.pdp.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;

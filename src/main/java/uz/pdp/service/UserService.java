@@ -34,5 +34,14 @@ public class UserService {
     public UserEntity findById(UUID userId) {
         return userRepository.findById(userId);
     }
+
+    public void updatePlusBalance(UUID id, Double price) {
+        userRepository.updatePlusBalance(id, price);
+    }
+
+
+    public void updateMinusBalance(UUID id, Double price) {
+        userRepository.updateMinusBalance(id, price);
+    }
 }
 

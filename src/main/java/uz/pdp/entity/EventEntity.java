@@ -25,7 +25,10 @@ public class EventEntity extends BaseEntity{
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private UserEntity ownerId;
+
     @OneToMany(mappedBy = "event", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<TicketEntity> tickets;
-
 }

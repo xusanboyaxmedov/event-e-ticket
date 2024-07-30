@@ -19,4 +19,5 @@ public class UserEntity extends BaseEntity{
     private String username;
     private String password;
     private UserType role;
+    private Double balance;
 }

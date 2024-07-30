@@ -25,7 +25,7 @@
 <div class="container">
     <h1>Welcome, ${session.username}!</h1>
     <div class="button-container">
-        <a href="${pageContext.request.contextPath}/events" class="btn">Events</a>
+        <a href="${pageContext.request.contextPath}/events/show-user-events" class="btn">Events</a>
         <a href="${pageContext.request.contextPath}/attendance" class="btn">Attendance History</a>
     </div>
 </div>

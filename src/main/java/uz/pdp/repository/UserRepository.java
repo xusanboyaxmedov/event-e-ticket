@@ -32,4 +32,17 @@ public class UserRepository {
     public UserEntity findById(UUID userId) {
         return entityManager.find(UserEntity.class, userId);
     }
+
+    public void updatePlusBalance(UUID id, Double price) {
+        UserEntity userEntity = entityManager.find(UserEntity.class, id);
+        userEntity.setBalance(userEntity.getBalance() + price);
+        entityManager.merge(userEntity);
+    }
+
+
+    public void updateMinusBalance(UUID id, Double price) {
+        UserEntity userEntity = entityManager.find(UserEntity.class, id);
+        userEntity.setBalance(userEntity.getBalance() - price);
+        entityManager.merge(userEntity);
+    }
 }

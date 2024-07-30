@@ -42,7 +42,7 @@ public class AuthController {
         UserEntity userEntity = userService.signUp(signUpDTO);
         model.addAttribute("session", userEntity);
 
-        session.setAttribute("userId", userEntity.getId());
+        session.setAttribute("userId", userEntity);
         if (userEntity.getRole().equals(USER)) {
             return "users";
         } else if (userEntity.getRole().equals(ORGANIZER)) {
@@ -56,7 +56,7 @@ public class AuthController {
         UserEntity userEntity = userService.signIn(signInDto);
         model.addAttribute("session", userEntity);
         if (userEntity != null) {
-            session.setAttribute("userId", userEntity.getId());
+            session.setAttribute("userId", userEntity);
             if (userEntity.getRole().equals(USER)) {
                 return "users";
             } else if (userEntity.getRole().equals(ORGANIZER)) {

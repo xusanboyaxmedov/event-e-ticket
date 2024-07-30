@@ -2,6 +2,7 @@ package uz.pdp.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.pdp.entity.UserEntity;
 import uz.pdp.entity.type.EventType;
 
 import java.time.LocalDateTime;
@@ -16,4 +17,5 @@ public class EventDTO {
     private Double ticketPrice;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    private UserEntity userId;
 }

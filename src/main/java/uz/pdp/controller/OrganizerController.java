@@ -1,4 +1,4 @@
-package uz.pdp.config;
+package uz.pdp.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ import java.util.UUID;
 public class OrganizerController {
     EventService eventService;
     UserService userService;
+
 
     @RequestMapping
     public String organizerPage(HttpSession session, Model model) {

@@ -7,6 +7,7 @@ import uz.pdp.entity.EventEntity;
 import uz.pdp.entity.TicketEntity;
 import uz.pdp.repository.TicketRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,5 +23,11 @@ public class TicketService {
     @Transactional
     public void update(TicketEntity byEventId) {
         ticketRepository.update(byEventId);
+    }
+
+    @Transactional
+    public void add(TicketEntity ticketEntity) {
+        ticketEntity.setCode("#" + Math.random()*10000 + 1);
+        ticketRepository.save(ticketEntity);
     }
 }

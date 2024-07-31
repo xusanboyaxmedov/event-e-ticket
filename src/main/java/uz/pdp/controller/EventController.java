@@ -1,6 +1,8 @@
 package uz.pdp.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jdk.jfr.Event;
+import jdk.jfr.EventType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import uz.pdp.service.EventService;
 import uz.pdp.service.TicketService;
 import uz.pdp.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -44,25 +47,37 @@ public class EventController {
 
     @RequestMapping(value = "/buy-event", method = RequestMethod.POST)
     public String userBuyEvent(@RequestParam("eventId") UUID eventId, Model model, HttpSession session) {
-        UserEntity user = userService.findById( (UUID) session.getAttribute("userId"));
+        UserEntity user = userService.findById((UUID) session.getAttribute("userId"));
         EventEntity event = eventService.findById(eventId);
 
-        TicketEntity eventTicket = ticketService.findByEventId(event.getId());
+        if (event.getAvailableSeats() == 0 && event.getTicketPrice() == 0) {
+            ticketService.add(TicketEntity.builder()
+                    .locationName(event.getLocationName())
+                    .buyer(user)
+                    .ticketDate(event.getStartTime())
+                    .price(event.getTicketPrice())
+                    .event(event)
+                    .build());
+        }else
+        {
+            TicketEntity eventTicket = ticketService.findByEventId(event.getId());
 
-        if (eventTicket == null) {
-            model.addAttribute("errorMessage", "event not found");
-            model.addAttribute("balance", user.getBalance());
-            return "show-user-events";
+            if (eventTicket == null) {
+                model.addAttribute("errorMessage", "event not found");
+                model.addAttribute("balance", user.getBalance());
+                return "show-user-events";
+            }
+
+//            if (user.getBalance() < event.getTicketPrice()) {
+//
+//            }
+
+            userService.updateMinusBalance(user.getId(), eventTicket.getPrice());
+            userService.updatePlusBalance(event.getOwnerId().getId(), eventTicket.getPrice());
+
+            eventTicket.setBuyer(user);
+            ticketService.update(eventTicket);
         }
-
-        if (user.getBalance() < event.getTicketPrice()) {
-
-        }
-        userService.updateMinusBalance(user.getId(), eventTicket.getPrice());
-        userService.updatePlusBalance(event.getOwnerId().getId(), eventTicket.getPrice());
-
-        eventTicket.setBuyer(user);
-        ticketService.update(eventTicket);
 
         model.addAttribute("events", eventService.getEvents());
         model.addAttribute("balance", userService.findById(user.getId()).getBalance());
@@ -71,7 +86,7 @@ public class EventController {
 
     @RequestMapping(value = "/add-event", method = RequestMethod.POST)
     public String addEvent(@ModelAttribute EventDTO eventDTO, Model model, HttpSession session) {
-        UserEntity userId = userService.findById ((UUID) session.getAttribute("userId"));
+        UserEntity userId = userService.findById((UUID) session.getAttribute("userId"));
         eventDTO.setUserId(userId);
         try {
             eventService.addEvent(eventDTO);
@@ -81,7 +96,7 @@ public class EventController {
             return "add-event";
         }
         model.addAttribute("events", eventService.getEvents(userId.getId()));
-        model.addAttribute("balance", userService.findById (userId.getId()).getBalance());
+        model.addAttribute("balance", userService.findById(userId.getId()).getBalance());
         return "show-events";
     }
 

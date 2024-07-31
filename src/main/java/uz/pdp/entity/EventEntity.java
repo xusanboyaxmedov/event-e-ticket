@@ -20,6 +20,7 @@ public class EventEntity extends BaseEntity{
     private Double locationPrice;
     private Integer capacity;
     private Double ticketPrice;
+    @Column(columnDefinition = "int default 0")
     private Integer availableSeats;
     private String picture;
     private LocalDateTime startTime;

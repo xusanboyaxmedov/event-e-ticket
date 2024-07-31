@@ -53,15 +53,15 @@ public class EventService {
                 .type(eventDTO.getEventType())
                 .locationName(eventDTO.getLocationName())
                 .locationPrice(eventDTO.getLocationPrice())
-                .capacity(eventDTO.getCapacity())
+                .capacity(eventDTO.getCapacity() == null ? 0 : eventDTO.getCapacity())
                 .ticketPrice(eventDTO.getTicketPrice())
                 .startTime(eventDTO.getStartTime())
                 .endTime(eventDTO.getEndTime())
                 .picture(getPictureByEvent(eventDTO.getEventType()))
-                .availableSeats(eventDTO.getCapacity())
+                .availableSeats(eventDTO.getCapacity() == null ? 0 : eventDTO.getCapacity())
                 .ownerId(eventDTO.getUserId())
                 .build());
-        userService.updateMinusBalance(eventDTO.getUserId().getId(), 500+eventDTO.getLocationPrice());
+        userService.updateMinusBalance(eventDTO.getUserId().getId(), 500 + eventDTO.getLocationPrice());
     }
 
     private static String getPictureByEvent(EventType eventType) {
@@ -75,6 +75,7 @@ public class EventService {
     public List<EventEntity> getEvents() {
         return eventRepository.showEvent();
     }
+
     public List<EventEntity> getEvents(UUID ownerId) {
         return eventRepository.showEvent(ownerId);
     }

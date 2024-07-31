@@ -33,4 +33,7 @@ public class TicketRepository {
         entityManager.merge(ticketEntity);
     }
 
+    public void save(TicketEntity ticketEntity) {
+        entityManager.persist(ticketEntity);
+    }
 }

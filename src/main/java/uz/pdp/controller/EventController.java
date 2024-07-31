@@ -109,6 +109,8 @@ public class EventController {
         return "show-events";
     }
 
+
+
     @RequestMapping(value = "/delete-event", method = RequestMethod.POST)
     public String deleteEvent(@RequestParam("eventId") UUID eventId, Model model, HttpSession session) {
         eventService.deleteEvent(eventId);

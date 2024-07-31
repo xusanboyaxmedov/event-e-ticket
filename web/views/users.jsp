@@ -18,7 +18,7 @@
         <div class="nav-buttons">
             <button class="balance-btn" onclick="showBalancePopup()">Balance: $<span id="balanceDisplay">${session.balance}</span>
             </button>
-            <a href="" class="logout-btn">Log Out</a>
+            <a href="${pageContext.request.contextPath}/auth/sign-in" class="logout-btn">Log Out</a>
         </div>
     </div>
 </nav>

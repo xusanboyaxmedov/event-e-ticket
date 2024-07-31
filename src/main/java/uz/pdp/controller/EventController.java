@@ -81,7 +81,7 @@ public class EventController {
             return "add-event";
         }
         model.addAttribute("events", eventService.getEvents(userId.getId()));
-        model.addAttribute("balance", userId.getBalance());
+        model.addAttribute("balance", userService.findById (userId.getId()).getBalance());
         return "show-events";
     }
 

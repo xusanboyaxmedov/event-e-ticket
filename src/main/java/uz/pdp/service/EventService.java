@@ -19,9 +19,10 @@ import java.util.UUID;
 public class EventService {
 
     EventRepository eventRepository;
+    UserService userService;
 
 
-    public EventEntity addEvent(EventDTO eventDTO) {
+    public void addEvent(EventDTO eventDTO) {
 
         if (!eventDTO.getStartTime().isAfter(LocalDateTime.now())) {
             throw new RuntimeException("The start time must be set in the future\n");
@@ -48,7 +49,7 @@ public class EventService {
 
         }
 
-        return eventRepository.addEventTicket(EventEntity.builder()
+        eventRepository.addEventTicket(EventEntity.builder()
                 .type(eventDTO.getEventType())
                 .locationName(eventDTO.getLocationName())
                 .locationPrice(eventDTO.getLocationPrice())
@@ -60,6 +61,7 @@ public class EventService {
                 .availableSeats(eventDTO.getCapacity())
                 .ownerId(eventDTO.getUserId())
                 .build());
+        userService.updateMinusBalance(eventDTO.getUserId().getId(), 500+eventDTO.getLocationPrice());
     }
 
     private static String getPictureByEvent(EventType eventType) {

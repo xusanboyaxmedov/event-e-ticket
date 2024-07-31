@@ -36,4 +36,9 @@ public class TicketRepository {
     public void save(TicketEntity ticketEntity) {
         entityManager.persist(ticketEntity);
     }
+
+    public List<TicketEntity> showTickets(UUID userId) {
+        return entityManager.createQuery("from TicketEntity e where e.buyer.id= :id", TicketEntity.class)
+                .setParameter("id", userId).getResultList();
+    }
 }

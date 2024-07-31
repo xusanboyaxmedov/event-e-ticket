@@ -44,7 +44,7 @@ public class AuthController {
 
         session.setAttribute("userId", userEntity.getId());
         if (userEntity.getRole().equals(USER)) {
-            return "users";
+            return "user";
         } else if (userEntity.getRole().equals(ORGANIZER)) {
             return "organizer";
         }
@@ -58,7 +58,7 @@ public class AuthController {
         if (userEntity != null) {
             session.setAttribute("userId", userEntity.getId());
             if (userEntity.getRole().equals(USER)) {
-                return "users";
+                return "user";
             } else if (userEntity.getRole().equals(ORGANIZER)) {
                 return "organizer";
             }

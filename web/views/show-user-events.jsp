@@ -10,8 +10,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-left">
-            <a href="${pageContext.request.contextPath}/users" class="nav-btn">Back</a>
-            <a href="${pageContext.request.contextPath}/users" class="nav-btn">Main Menu</a>
+            <a href="${pageContext.request.contextPath}/user" class="nav-btn">Back</a>
+            <a href="${pageContext.request.contextPath}/user/history" class="nav-btn">My Tickets</a>
         </div>
         <div class="nav-right">
             <button class="balance-btn">Balance: $<span id="balanceDisplay">${balance}</span></button>

@@ -8,6 +8,7 @@ import uz.pdp.entity.TicketEntity;
 import uz.pdp.entity.UserEntity;
 import uz.pdp.entity.type.EventType;
 import uz.pdp.repository.EventRepository;
+import uz.pdp.repository.TicketRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +21,7 @@ public class EventService {
 
     EventRepository eventRepository;
     UserService userService;
+    TicketRepository ticketRepository;
 
 
     public void addEvent(EventDTO eventDTO) {
@@ -84,5 +86,4 @@ public class EventService {
     public EventEntity findById(UUID eventId) {
         return eventRepository.findById(eventId);
     }
-
 }

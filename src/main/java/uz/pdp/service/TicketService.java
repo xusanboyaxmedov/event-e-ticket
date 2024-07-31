@@ -8,6 +8,7 @@ import uz.pdp.entity.EventEntity;
 import uz.pdp.entity.TicketEntity;
 import uz.pdp.repository.TicketRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -36,9 +37,23 @@ public class TicketService {
         List<TicketEntity> ticketEntities = ticketRepository.showTickets(userId);
         List<TicketDao> ticketDaos = new ArrayList<>();
         for (TicketEntity ticketEntity : ticketEntities) {
-            TicketDao ticketDao = new TicketDao(ticketEntity.getEvent().getType(), ticketEntity.getLocationName(), ticketEntity.getTicketDate(), ticketEntity.getCode());
-            ticketDaos.add(ticketDao);
+            if (ticketEntity.getTicketDate().isAfter(LocalDateTime.now())) {
+                TicketDao ticketDao = new TicketDao(ticketEntity.getEvent().getType(), ticketEntity.getLocationName(), ticketEntity.getTicketDate(), ticketEntity.getCode());
+                ticketDaos.add(ticketDao);
+            }
         }
         return ticketDaos;
+    }
+
+    public List<TicketDao> getExpiredTickets(UUID userId) {
+        List<TicketEntity> expiredTickets = ticketRepository.showTickets(userId);
+        List<TicketDao> ticketDaos = new ArrayList<>();
+        for (TicketEntity ticketEntity : expiredTickets) {
+            if (ticketEntity.getTicketDate().isBefore(LocalDateTime.now())) {
+                ticketDaos.add(new TicketDao(ticketEntity.getEvent().getType(), ticketEntity.getLocationName(), ticketEntity.getTicketDate(), ticketEntity.getCode()));
+            }
+        }
+        return ticketDaos;
+
     }
 }

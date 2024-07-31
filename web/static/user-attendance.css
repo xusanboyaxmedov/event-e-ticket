@@ -105,3 +105,43 @@ h1 {
     max-width: 100%;
     height: auto;
 }
+
+
+.content {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ticket .details {
+    flex: 1;
+}
+
+.ticket .details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.ticket .barcode {
+    flex: 0 0 100px;
+    text-align: center;
+}
+
+.ticket .barcode img {
+    max-width: 100px;
+    height: auto;
+}

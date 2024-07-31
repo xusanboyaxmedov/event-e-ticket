@@ -57,6 +57,7 @@
                 <option value="CONCERT">CONCERT</option>
                 <option value="MOVIE">MOVIE</option>
                 <option value="SHOW">SHOW</option>
+                <option value="COMEDY">COMEDY</option>
                 <option value="GAME">GAME</option>
             </select>
         </div>
@@ -253,13 +254,13 @@
                 <label for="venue-name">Venue name:</label>
                 <input type="text" id="venue-name" class="venue-details" placeholder="Venue Name" name="locationName"
                        readonly>
-                <label for="venue-name">Price:</label>
+                <label for="venue-price">Price:</label>
                 <input type="number" id="venue-price" class="venue-details" placeholder="Price" name="locationPrice"
                        readonly>
-                <label for="venue-name">Capacity:</label>
+                <label for="venue-capacity">Capacity:</label>
                 <input type="number" id="venue-capacity" class="venue-details" placeholder="Capacity" name="capacity"
                        readonly>
-                <label for="venue-name">Ticket Price:</label>
+                <label for="venue-ticket">Ticket Price:</label>
                 <input type="number" id="venue-ticket" class="venue-details" placeholder="Ticket Price"
                        name="ticketPrice" readonly>
             </div>

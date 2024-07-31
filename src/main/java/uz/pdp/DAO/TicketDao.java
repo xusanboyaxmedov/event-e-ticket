@@ -14,6 +14,6 @@ import java.time.LocalDateTime;
 public class TicketDao {
     private EventType eventType;
     private String locationName;
-    private LocalDateTime ticketDate;
+    private LocalDateTime start;
     private String code;
 }

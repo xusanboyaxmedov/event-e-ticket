@@ -38,9 +38,7 @@ public class UserController {
     public String showEvent(Model model, HttpSession session) {
         model.addAttribute("balance", userService.findById((UUID) session.getAttribute("userId")).getBalance());
         model.addAttribute("tickets", ticketService.getTickets((UUID) session.getAttribute("userId")));
+        model.addAttribute("expiredTickets", ticketService.getExpiredTickets((UUID) session.getAttribute("userId")));
         return "user-attendance";
     }
-
-
-
 }

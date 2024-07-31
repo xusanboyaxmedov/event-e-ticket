@@ -9,6 +9,7 @@ import uz.pdp.entity.TicketEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -17,25 +18,25 @@ public class EventRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public EventEntity addEventTicket(Integer eventId) {
+    public EventEntity addEventTicket(EventEntity event) {
 
-        EventEntity event = entityManager.find(EventEntity.class, eventId);
         List<TicketEntity> tickets = new ArrayList<>();
-        for (Integer i = 0; i < event.getCapacity(); i++) {
+        for (int i = 0; i < event.getAvailableSeats(); i++) {
             tickets.add(TicketEntity.builder()
+                    .locationName(event.getLocationName())
+                    .ticketDate(event.getStartTime())
                     .code("#" + Math.random() * 10000)
                     .price(event.getTicketPrice())
-                    .event(entityManager.find(EventEntity.class, eventId))
+                    .event(event)
                     .build());
         }
 
         event.setTickets(tickets);
 
-        entityManager.persist(event);
+        addEvent(event);
         return event;
     }
 
-    @Transactional
     public EventEntity addEvent(EventEntity eventEntity) {
         entityManager.persist(eventEntity);
         return eventEntity;
@@ -50,6 +51,12 @@ public class EventRepository {
     @Transactional
     public List<EventEntity> showEvent() {
         return entityManager.createQuery("from EventEntity", EventEntity.class).getResultList();
+    }
+
+    @Transactional
+    public List<EventEntity> showEvent(UUID ownerId) {
+        return entityManager.createQuery("from EventEntity e where e.ownerId.id= :id", EventEntity.class)
+                .setParameter("id", ownerId).getResultList();
     }
 
     public EventEntity findById(UUID eventId) {

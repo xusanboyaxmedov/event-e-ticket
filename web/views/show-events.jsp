@@ -27,14 +27,14 @@
     }
 </style>
 <body>
-<nav>
+<nav class="navbar">
     <div class="nav-container">
         <div class="nav-left">
-            <a href="${pageContext.request.contextPath}/events/add-event" class="btn">Back</a>
-            <a href="${pageContext.request.contextPath}/organizer" class="btn">Main Menu</a>
+            <a href="${pageContext.request.contextPath}/events/add-event" class="nav-btn">Back</a>
+            <a href="${pageContext.request.contextPath}/organizer" class="nav-btn">Main Menu</a>
         </div>
         <div class="nav-right">
-            <span class="balance">Balance: $<span id="balance">500</span></span>
+            <button class="balance-btn">Balance: $<span id="balanceDisplay">${balance}</span></button>
         </div>
     </div>
 </nav>
@@ -54,7 +54,7 @@
                     <div class="event-card">
                         <img src="../pictures/${event.picture}" alt="Event Thumbnail">
                         <div class="event-details">
-                            <p><strong>Type:</strong> ${event.type}</p>
+                            <h3>${event.type}</h3>
                             <p><strong>Venue:</strong> ${event.locationName}</p>
                             <p><strong>Date:</strong> ${event.startTime}</p>
                             <p><strong>Available tickets:</strong> ${event.availableSeats}</p>
@@ -90,19 +90,14 @@
 
 <script>
     function showDeletePopup(eventId, eventType) {
-        // Display the event type in the popup message
         document.getElementById('eventType').innerText = eventType;
-        // Set the event ID in the hidden input of the confirmation form
         document.getElementById('deleteEventId').value = eventId;
-        // Show the popup
         document.getElementById('deletePopup').style.display = 'flex';
 
-        // Set event listener for the "No" button
         document.getElementById('cancelDelete').onclick = function() {
             document.getElementById('deletePopup').style.display = 'none';
         };
     }
 </script>
-
 </body>
 </html>

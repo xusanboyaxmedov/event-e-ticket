@@ -6,21 +6,17 @@ body {
     color: #333;
 }
 
-/* Navbar Styling */
-.navbar {
+.navbar, .nav-container {
     position: sticky;
     top: 0;
     z-index: 1000; /* Ensure it appears above other content */
     background-color: #007bff; /* Ensure background color is set to avoid transparency */
-    background-color: #007bff;
-    color: white;
-    padding: 15px 30px;
-}
-
-.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: #fff;
 }
 
 .nav-left, .nav-right {
@@ -28,47 +24,32 @@ body {
     align-items: center;
 }
 
-.nav-btn {
-    background-color: white;
-    color: #007bff;
+.nav-btn, .balance-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    margin: 0 10px;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    margin-right: 15px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.nav-btn:hover {
-    background-color: #e0e0e0;
-}
-
-.balance-btn {
-    background-color: white;
-    color: #007bff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 15px;
-}
-
-.balance-btn:hover {
-    background-color: #e0e0e0;
+.nav-btn:hover, .balance-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
 }
 
 .container {
     width: 80%;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 40px;
     background-color: #fff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-top: 40px;
     text-align: center;
 }
 
@@ -138,13 +119,13 @@ h1 {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.delete-btn {
-    background-color: #e74c3c;
+.buy-btn {
+    background-color: #28a745;
     color: #fff;
 }
 
-.delete-btn:hover {
-    background-color: #c0392b;
+.buy-btn:hover {
+    background-color: #218838;
 }
 
 .popup {
@@ -174,19 +155,27 @@ h1 {
 }
 
 .confirm-btn {
-    background-color: #e74c3c;
+    background-color: #28a745;
     color: #fff;
 }
 
 .confirm-btn:hover {
-    background-color: #c0392b;
+    background-color: #218838;
 }
 
 .cancel-btn {
-    background-color: #3498db;
+    background-color: #dc3545;
     color: #fff;
 }
 
 .cancel-btn:hover {
-    background-color: #2980b9;
+    background-color: #c82333;
+}
+
+.alert-bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }

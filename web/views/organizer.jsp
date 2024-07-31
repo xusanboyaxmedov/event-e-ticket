@@ -16,8 +16,8 @@
     <div class="nav-container">
         <span class="nav-title">Organizer Dashboard</span>
         <div class="nav-buttons">
-            <button class="balance-btn" onclick="showBalancePopup()">Balance: $<span id="balanceDisplay">500</span></button>
-            <a href="" class="logout-btn">Log Out</a>
+            <button class="balance-btn" onclick="showBalancePopup()">Balance: $<span id="balanceDisplay">${session.balance}</span></button>
+            <a href="sign-in" class="logout-btn">Log Out</a>
         </div>
     </div>
 </nav>

@@ -3,6 +3,7 @@ package uz.pdp.service;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import uz.pdp.DTO.SignInDTO;
 import uz.pdp.DTO.SignUpDTO;
 import uz.pdp.entity.EventEntity;
@@ -28,6 +29,7 @@ public class UserService {
                 .username(signUpDTO.username())
                 .password(signUpDTO.password())
                 .role(signUpDTO.role())
+                .balance(1000.0)
                 .build());
     }
 
@@ -35,11 +37,12 @@ public class UserService {
         return userRepository.findById(userId);
     }
 
+    @Transactional
     public void updatePlusBalance(UUID id, Double price) {
         userRepository.updatePlusBalance(id, price);
     }
 
-
+    @Transactional
     public void updateMinusBalance(UUID id, Double price) {
         userRepository.updateMinusBalance(id, price);
     }

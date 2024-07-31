@@ -267,6 +267,14 @@ select, .venue-details, .venue-info {
 .form-section {
     margin-bottom: 20px;
 }
-.error-message {
+.alert {
+    color: red;
+}
+
+.alert-bottom-right{
+    color: red;
+}
+
+.alert-danger {
     color: red;
 }

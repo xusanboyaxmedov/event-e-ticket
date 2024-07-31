@@ -16,9 +16,9 @@
             <a href="${pageContext.request.contextPath}/events/show-events" class="btn">Show Events</a>
         </div>
         <div class="nav-right">
-            <button class="balance-btn" onclick="showBalancePopup()">Balance: $<span id="balanceDisplay">500</span>
+            <button class="balance-btn" onclick="showBalancePopup()">Balance: $<span id="balanceDisplay">${session.balance}</span>
             </button>
-            <a href="" class="logout-btn">Log Out</a>
+            <a href="sign-in" class="logout-btn">Log Out</a>
         </div>
     </div>
 </nav>
@@ -41,6 +41,11 @@
 
 
 <div class="container">
+    <c:if test="${not empty errorMessage}">
+        <div id="alertMessage" class="alert alert-danger alert-bottom-right" role="alert">
+                ${errorMessage}
+        </div>
+    </c:if>
     <h1>Create Event</h1>
     <form id="createEventForm" action="${pageContext.request.contextPath}/events/add-event" method="post">
         <!-- Event Name Section -->
@@ -239,7 +244,6 @@
                         Sultan Saodat Complex - $140 - Open space, capacity varies
                     </option>
                 </optgroup>
-
             </select>
         </section>
 
@@ -274,13 +278,10 @@
             <button class="btn" type="submit">Create Event</button>
         </div>
     </form>
-    <c:if test="${not empty errorMessage}">
-        <div id="alertMessage" class="alert alert-danger alert-bottom-right" role="alert">
-                ${errorMessage}
-        </div>
-    </c:if>
 </div>
 
 <script src="../static/add-event.js"></script>
+
+
 </body>
 </html>

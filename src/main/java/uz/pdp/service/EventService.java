@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.pdp.DTO.EventDTO;
 import uz.pdp.entity.EventEntity;
+import uz.pdp.entity.TicketEntity;
+import uz.pdp.entity.UserEntity;
 import uz.pdp.entity.type.EventType;
 import uz.pdp.repository.EventRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -17,19 +20,24 @@ public class EventService {
 
     EventRepository eventRepository;
 
+
     public EventEntity addEvent(EventDTO eventDTO) {
 
         if (!eventDTO.getStartTime().isAfter(LocalDateTime.now())) {
-            throw new RuntimeException("Start time should be in future");
+            throw new RuntimeException("The start time must be set in the future\n");
         }
         if (!eventDTO.getEndTime().isAfter(eventDTO.getStartTime())) {
-            throw new RuntimeException("End time should be after start time");
+            throw new RuntimeException("The end time must be after the start time");
         }
         int start = eventDTO.getStartTime().getHour() * 60 + eventDTO.getStartTime().getMinute();
         int end = eventDTO.getEndTime().getHour() * 60 + eventDTO.getEndTime().getMinute();
-        if (start > end) {}
 
-            List<EventEntity> events = getEvents();
+        if (start > end) {
+
+        }
+
+        List<EventEntity> events = getEvents();
+
         for (EventEntity event : events) {
             if (event.getLocationName().equals(eventDTO.getLocationName())) {
 
@@ -40,7 +48,7 @@ public class EventService {
 
         }
 
-        return eventRepository.addEvent(EventEntity.builder()
+        return eventRepository.addEventTicket(EventEntity.builder()
                 .type(eventDTO.getEventType())
                 .locationName(eventDTO.getLocationName())
                 .locationPrice(eventDTO.getLocationPrice())
@@ -50,6 +58,7 @@ public class EventService {
                 .endTime(eventDTO.getEndTime())
                 .picture(getPictureByEvent(eventDTO.getEventType()))
                 .availableSeats(eventDTO.getCapacity())
+                .ownerId(eventDTO.getUserId())
                 .build());
     }
 
@@ -64,6 +73,10 @@ public class EventService {
     public List<EventEntity> getEvents() {
         return eventRepository.showEvent();
     }
+    public List<EventEntity> getEvents(UUID ownerId) {
+        return eventRepository.showEvent(ownerId);
+    }
+
 
     public EventEntity findById(UUID eventId) {
         return eventRepository.findById(eventId);

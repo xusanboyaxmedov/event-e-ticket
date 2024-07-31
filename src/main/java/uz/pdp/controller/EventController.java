@@ -30,6 +30,7 @@ public class EventController {
     UserService userService;
     TicketService ticketService;
 
+
     @RequestMapping(value = "/add-event", method = RequestMethod.GET)
     public String addEvents(Model model, HttpSession session) {
         model.addAttribute("events", eventService.getEvents((UUID) session.getAttribute("userId")));

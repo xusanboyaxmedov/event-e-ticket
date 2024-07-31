@@ -277,7 +277,21 @@
         <div class="button-container">
             <button class="btn" type="submit">Create Event</button>
         </div>
+
     </form>
+</div>
+
+<!-- Confirmation Popup -->
+<div id="confirmationPopup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <span class="close" onclick="document.getElementById('confirmationPopup').style.display='none'">&times;</span>
+        <h2>Confirm Event Creation</h2>
+        <div id="confirmationMessage"></div>
+        <div class="popup-actions">
+            <button id="confirmCreateEvent" class="btn">Confirm</button>
+            <button id="cancelCreateEvent" class="btn">Cancel</button>
+        </div>
+    </div>
 </div>
 
 <script src="../static/add-event.js"></script>

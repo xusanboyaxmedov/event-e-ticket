@@ -78,3 +78,62 @@ function showDeletePopup(eventId, eventType) {
         document.getElementById('deletePopup').style.display = 'none';
     };
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createEventForm = document.getElementById('createEventForm');
+    createEventForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission
+        showConfirmationPopup();
+    });
+});
+
+function initializeEventForm() {
+    const form = document.getElementById('createEventForm');
+    const eventTypeSelect = document.getElementById('eventType');
+    const venueSelect = document.getElementById('venue-select');
+    const venueName = document.getElementById('venue-name');
+    const venuePrice = document.getElementById('venue-price');
+    const confirmationPopup = document.getElementById('confirmationPopup');
+    const eventTypePrice = 500; // Fixed price for the event type
+
+    // Update venue information on selection
+    venueSelect.addEventListener('change', function () {
+        const selectedOption = venueSelect.options[venueSelect.selectedIndex];
+        venueName.value = selectedOption.text;
+        venuePrice.value = selectedOption.getAttribute('data-price');
+    });
+
+    // Display confirmation popup when the form is submitted
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form from submitting immediately
+        const venueCost = parseFloat(venuePrice.value || 0);
+        const totalCost = eventTypePrice + venueCost;
+
+        // Set confirmation message
+        const confirmationMessage = `
+            <p>Event Type Price: $${eventTypePrice}</p>
+            <p>Venue Price: $${venueCost}</p>
+            <p><strong>Total Cost: $${totalCost}</strong></p>
+            <p>Do you agree?</p>
+        `;
+        document.getElementById('confirmationMessage').innerHTML = confirmationMessage;
+
+        // Show the confirmation popup
+        confirmationPopup.style.display = 'block';
+    });
+
+    // Confirm and submit the form
+    document.getElementById('confirmCreateEvent').addEventListener('click', function () {
+        confirmationPopup.style.display = 'none'; // Hide the popup
+        form.submit(); // Submit the form
+    });
+
+    // Cancel event creation
+    document.getElementById('cancelCreateEvent').addEventListener('click', function () {
+        confirmationPopup.style.display = 'none'; // Hide the popup
+    });
+}
+
+// Initialize the form once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeEventForm);
+
